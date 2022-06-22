@@ -14,11 +14,6 @@ time.sort()
 
 heapq.heappush(hq,time[0][1])
 
-i = 0
-room = 0
-
-answer = 0
-
 for i in range(1,N):
     if  time[i][0] < hq[0]:
         heapq.heappush(hq,time[i][1])
