@@ -8,28 +8,28 @@ M = int(sys.stdin.readline().rstrip())
 
 box = list(map(int,sys.stdin.readline().rstrip().split()))
 
-crain.sort()
-crain.reverse()
-box.sort()
+box.sort(reverse=True)
+crain.sort(reverse=True)
 
-boxSize = len(box)
-#print(box[len(box)-1])
+
+print(box)
+print(crain)
 
 answer = 0
 
-while box:
-    check = False
+if box[M-1] > crain[0]:
+    print(-1)
+    exit()
+
+while len(box) > 0:
+   
     for i in crain:
-        if boxSize != 0:
-            if i > box[boxSize-1]:
-                check = True
-                box.pop()
-                boxSize -= 1
+        for j in range(0,len(box)):
+            if i >= box[j]:
+                box.remove(box[j])
+                break
     
-    if not check:
-        answer = -1
-        break
-    
+    print(box)
     answer += 1
 
 print(answer)
