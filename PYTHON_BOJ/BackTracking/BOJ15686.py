@@ -24,11 +24,11 @@ def dfs(depth,idx,s):
 
     if depth == M:
         temp = 0
-        li = idx.split()
+        li = list(map(int,idx.split()))
         for h in house:
             chi_len = 1e9
             for j in range(M):
-                chi_len = min(chi_len, abs(h[0] - chicken[j][0]) + abs(h[1] - chicken[j][1]))
+                chi_len = min(chi_len, abs(h[0] - chicken[li[j]][0]) + abs(h[1] - chicken[li[j]][1]))
             temp += chi_len
         result = min(result,temp)
 
