@@ -1,29 +1,18 @@
-import sys
+from copy import deepcopy
 
-N = int(sys.stdin.readline().rstrip())
+n=int(input())
+h=list(map(int, input().split()))
+s = deepcopy(h)
+answer=0
 
-honey = list(map(int,sys.stdin.readline().rstrip().split())) 
+for i in range(1, n):
+    s[i] += s[i-1]
 
-answer = 0
+for i in range(1, n-1): # 오른쪽
+    answer = max(answer, 2*s[-1]-h[0]-h[i]-s[i])
+for i in range(1, n-1): # 왼쪽
+    answer = max(answer, s[-1]-h[-1]-h[i]+s[i-1])
+for i in range(1, n-1): # 중간
+    answer = max(answer, s[i]-h[0] + s[-1]-s[i-1]-h[-1])
 
-house_idx = 0
-bee1 = N-1
-
-s = [0 for _ in range(0,N+1)]
-
-for i in range(1,N+1):
-    s[i] =s[i-1] + honey[i-1]
-
-print(s)
-
-if N == 3:
-    answer = max(honey) * 2
-    print(answer)
-    exit()
-
-if honey[house_idx] < honey[N-1]:
-    house_idx = N-1
-    bee1 = 0
-
-
-
+print(answer)

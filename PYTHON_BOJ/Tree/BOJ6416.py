@@ -60,8 +60,6 @@ while True:
         if root == -1:
             check_Tree = False
 
-        if edge + 1 != len(node):
-            check_Tree = False
 
         visit = dict()       
         ##사이클 체크..
