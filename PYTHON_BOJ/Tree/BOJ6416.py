@@ -98,7 +98,7 @@ while True:
             except:
                 check_Tree = False
         
-        if check_Tree:
+        if check_Tree or len(node) == 0:
             answer.append("Case "+str(case)+" is a tree.")
             
         else:
