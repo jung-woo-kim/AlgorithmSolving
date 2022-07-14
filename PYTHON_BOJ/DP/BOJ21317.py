@@ -27,4 +27,7 @@ for j in range(1,N):
 
 if N == 1:
     result = 0
+if N == 2:
+    result = stone[1][0]
+
 print(result)

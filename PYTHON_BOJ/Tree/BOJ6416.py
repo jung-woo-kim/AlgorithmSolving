@@ -2,10 +2,12 @@ import sys
 
 Tree_in = dict()
 Tree_out = dict()
+
 node = []
 case = 1
 edge = 0
 answer = []
+
 while True:
     
     line = sys.stdin.readline().rstrip()
@@ -31,7 +33,9 @@ while True:
             Tree_in[inputLine[i+1]].append(inputLine[i])
         except:
             Tree_in[inputLine[i+1]] = [inputLine[i]]
+        
         edge+=1
+        
         node.append(inputLine[i])
         node.append(inputLine[i+1])
     
@@ -63,40 +67,40 @@ while True:
         if edge + 1 != len(node):
             check_Tree = False
 
-        # visit = dict()       
-        # ##사이클 체크 왜 없어도 되는거지..
-        # def dfs(node):
-        #     global is_cycle
+        visit = dict()       
+        ##사이클 체크 왜 없어도 되는거지..
+        def dfs(node):
+            global is_cycle
 
-        #     out_node = []
-        #     try:
-        #         out_node = Tree_out[node]
-        #     except:
-        #         out_node = []
+            out_node = []
+            try:
+                out_node = Tree_out[node]
+            except:
+                out_node = []
             
-        #     #print(out_node)
-        #     for n in out_node:
-        #         try:
-        #             visit[n] += 1
-        #             is_cycle = True
-        #             return
-        #         except:
-        #             visit[n] = 1
-        #         dfs(n)
-        #         if is_cycle:
-        #             return
+            #print(out_node)
+            for n in out_node:
+                try:
+                    visit[n] += 1
+                    is_cycle = True
+                    return
+                except:
+                    visit[n] = 1
+                dfs(n)
+                if is_cycle:
+                    return
                     
-        # dfs(root)
+        dfs(root)
 
-        # if is_cycle:
-        #     check_Tree = False
+        if is_cycle:
+            check_Tree = False
         
-        # visit[root] = 1
-        # for n in node:
-        #     try:
-        #         visit[n] += 1
-        #     except:
-        #         check_Tree = False
+        visit[root] = 1
+        for n in node:
+            try:
+                visit[n] += 1
+            except:
+                check_Tree = False
         
         if check_Tree or len(node) == 0:
             answer.append("Case "+str(case)+" is a tree.")
