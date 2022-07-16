@@ -14,18 +14,17 @@ answer = 0
 
 def dfs(depth,n):
     global answer
-    print(n)
+
  
     if depth == 5:
-        print("ck")
-        print(visited)
+   
         if not visited[n]:
             print(1)
             exit()
 
+    visited[n] = True
     for node in graph[n]:
         if not visited[node]:
-            visited[node] = True
             dfs(depth+1,node)
             visited[node] = False
 
@@ -33,4 +32,5 @@ for node in range(N):
     visited = [False for _ in range(N)]
     visited[node] = True
     dfs(1,node)
+    
 print(0)
