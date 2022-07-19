@@ -24,8 +24,8 @@ for _ in range(N):
         heapq.heappush(min_hq,temp[1])
     answer.append(max_hq[0][1])
 
-    print(max_hq)
-    print(min_hq)
+    # print(max_hq)
+    # print(min_hq)
 
     mid = max_hq[0][1]
 
