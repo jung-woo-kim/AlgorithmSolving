@@ -2,42 +2,20 @@ import sys
 
 N, K = map(int,sys.stdin.readline().rstrip().split())
 
-
-# #antatica -> antic
-# visited[0] = True
-# visited[13] = True
-# visited[19] = True
-# visited[8] = True
-# visited[2] = True
-
-#print(ord('c')-97)
-
 li = []
 alpha = []
 answer = 0
 antatica = 0
-for _ in range(N):
-    word = sys.stdin.readline().rstrip()[4:-4]
-    
-    word = list(set(list(word)))
-    word.sort()
-    temp = []
-    for w in word:
-        if w not in 'antic':
-            temp.append(w)
-            alpha.append(w)
-    if len(temp) == 0:
-        antatica += 1
-    else:
-        temp.sort()
-        li.append("".join(temp))
 
-alpha = list(set(alpha))
+li = [set(input())-{'a','n','t','i','c'} for _ in range(N)]
+
+alpha = set()
+for word in li:
+    for s in word:
+        alpha.add(s)
+
+alpha = list(alpha)
 alpha.sort()
-print(alpha)
-# print(li)
-print(antatica)
-visited = [False for i in range(len(alpha))]
 
 def dfs(depth,n,s):
     global answer
