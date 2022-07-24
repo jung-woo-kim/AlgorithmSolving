@@ -43,7 +43,6 @@ for off_x in range(0,M-7):
                 standard = board[off_y][off_x]
                 
             t = find(standard)
-            print(t)
             answer = min(answer,t)
         
 print(answer)
