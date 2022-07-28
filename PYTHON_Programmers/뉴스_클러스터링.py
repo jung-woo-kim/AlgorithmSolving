@@ -46,6 +46,9 @@ def solution(str1, str2):
             same_dic[item] = min(str1_dic[item],str2_dic[item])
         except:
             pass
+
+    print(str2_dic)
+    print(str1_dic)
     print(total_dic)
     print(same_dic) 
     if (len(str2_dic) == 0 and len(str1_dic) == 0):
@@ -64,3 +67,5 @@ def solution(str1, str2):
     
     answer = int((s_sum / (t_sum-s_sum)) * 65536)
     return answer
+
+solution('handshake','shake hands')

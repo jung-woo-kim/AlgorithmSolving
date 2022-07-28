@@ -6,16 +6,28 @@ li = []
 alpha = []
 answer = 0
 antatica = 0
+for _ in range(N):
+    word = sys.stdin.readline().rstrip()[4:-4]
+    
+    word = list(set(list(word)))
+    word.sort()
+    temp = []
+    for w in word:
+        if w not in 'antic':
+            temp.append(w)
+            alpha.append(w)
+    if len(temp) == 0:
+        antatica += 1
+    else:
+        temp.sort()
+        li.append("".join(temp))
 
-li = [set(input())-{'a','n','t','i','c'} for _ in range(N)]
-
-alpha = set()
-for word in li:
-    for s in word:
-        alpha.add(s)
-
-alpha = list(alpha)
+alpha = list(set(alpha))
 alpha.sort()
+
+print(alpha)
+
+visited = [False for i in range(len(alpha))]
 
 def dfs(depth,n,s):
     global answer
