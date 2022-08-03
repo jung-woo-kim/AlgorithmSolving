@@ -39,6 +39,7 @@ def BFS():
     return cheese
 
 answer = 0
+
 while True:
     answer += 1
     cheese = BFS()
@@ -46,4 +47,4 @@ while True:
         board[y][x] = 0
     if len(cheese) == 0:
         print(answer-1)
-        break
+        exit()
