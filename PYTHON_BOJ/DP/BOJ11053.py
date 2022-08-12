@@ -4,11 +4,13 @@ N = int(sys.stdin.readline().rstrip())
 
 arr = list(map(int,sys.stdin.readline().rstrip().split()))
 
-dp = [1] * N
+dp = [[0 for _ in range(N+1)] for _ in range(N+1)]
 
-for i in range(N):
-    for j in range(i):
-        if arr[i] > arr[j]:
-            dp[i] = max(dp[i],dp[j]+1)
+for i in range(1,N+1):
+    for j in range(1,N+1):
+        if arr[i-1] > arr[j-1]:
+            dp[i][j] = dp[i-1][j-1] + 1
+        else:
+            dp[i][j] = max(dp[i-1][j],dp[i][j-1])
 
-print(max(dp))
+print(dp[-1][-1])
