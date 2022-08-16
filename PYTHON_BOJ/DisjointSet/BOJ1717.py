@@ -19,7 +19,7 @@ def union(parent,x,y):
     
 for _ in range(M):
     z, a, b = map(int, input().split())
-    print(parent)
+    
     if z == 0 :
         union(parent, a, b)
     else :
@@ -27,3 +27,5 @@ for _ in range(M):
             print('YES')
         else :
             print('NO')
+
+    print(parent)
