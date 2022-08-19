@@ -4,21 +4,7 @@ N = int(sys.stdin.readline().rstrip())
 
 arr = list(map(int,sys.stdin.readline().rstrip().split()))
 
-minus_list = []
-plus_list = []
-
 arr.sort()
-
-# for a in arr:
-#     if a < 0:
-#         minus_list.append(a)
-#     else:
-#         plus_list.append(a)
-
-# minus_list.sort(reverse=True)
-
-# li = minus_list + plus_list
-
 
 left = 0
 right = N-1
