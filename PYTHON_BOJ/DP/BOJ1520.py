@@ -28,10 +28,9 @@ def dfs(n,x,y):
         if nx >=0 and nx < N and ny >= 0 and ny < M:
         
             if map[ny][nx] < n:
-                print(map[ny][nx])
+                #print(map[ny][nx])
                 dp[y][x] += dfs(int(map[ny][nx]),nx,ny)
     return dp[y][x]
 
 
 print(dfs(map[0][0],0,0))
-print(dp)
