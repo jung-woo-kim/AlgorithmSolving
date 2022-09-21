@@ -1,31 +1,23 @@
-import heapq
 import sys
 
 V,E = map(int,sys.stdin.readline().rstrip().split())
-INF = sys.maxsize
-dp = [INF for _ in range(V+1)]
-heap = []
 
-graph = [[]for _ in range(V+1)]
+graph = [[1e9 for _ in range(V+1)] for _ in range(V+1)]
+
+answer = 1e9
 
 for _ in range(E):
     a,b,c = map(int,sys.stdin.readline().rstrip().split())
-    graph[a].append((c,b))
+    graph[a][b] = min(graph[a][b],c)
 
-answer = INF
-
-def Dijkstra(start):
-    heapq.heappush(heap,(0,start))
-    while heap:
-        w,n = heapq.heappop(heap)
-        for wei,next_node in graph[n]:
-            if dp[next_node] > w+wei:
-                dp[next_node] = w+wei
-                heapq.heappush(heap,(w+wei,next_node))
-
+for k in range(1,V+1):
+    for i in range(1,V+1):
+        for j in range(1,V+1):
+            graph[i][j] = min(graph[i][j],graph[i][k]+graph[k][j])
 for i in range(1,V+1):
-    dp = [INF for _ in range(V+1)]
-    Dijkstra(i)
-    answer = min(answer,dp[i])
+    answer = min(graph[i][i],answer)
 
-print(answer if answer < INF else -1)
+if answer == 1e9:
+    print(-1)
+else:
+    print(answer)
