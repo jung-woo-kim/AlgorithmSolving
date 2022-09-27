@@ -27,6 +27,7 @@ answer = 0
 while lp < N and rp < N and lp < rp:
     #홀수의 개수
     odd = 0
+
     if lp == -1:
         odd = dp[rp][1]
     else:
@@ -36,9 +37,9 @@ while lp < N and rp < N and lp < rp:
         lp+=1
     else:
         if lp == -1:
-            answer = max(rp+1- odd,answer) 
+            answer = max(rp+1-odd,answer) 
         else:
-            answer = max(rp-lp -odd,answer)
+            answer = max(rp-lp-odd,answer)
             
         rp+=1
 
