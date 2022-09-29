@@ -28,18 +28,19 @@ while q:
     n,sheep = q.popleft()
     if n == 1:
         answer += sheep
-        continue
+        
     for node in tree[n]:
         if tree_info[node][0] == 'S':
             q.append((node,sheep+tree_info[node][1]))
-            #중복으로 더해지지 않게함
+            #양이 이미 갔으면 해당 구역의 양의 개수를 0으로
             tree_info[node][1] = 0
         else:
-            #늑대가 양이 섬에 도착할때마다 먹는가?
-            #일단 다른 풀이보니 그런가봄
+            #늑대가 양이 섬에 도착할때마다 먹는가? -> 먹는다
             if sheep > tree_info[node][1]:
-                q.append((node,sheep - tree_info[node][1]))  
+                q.append((node,sheep - tree_info[node][1]))
+                tree_info[node][1] = 0
             else:
                 q.append((node,0))
+                tree_info[node][1] -= sheep
 
 print(answer)
