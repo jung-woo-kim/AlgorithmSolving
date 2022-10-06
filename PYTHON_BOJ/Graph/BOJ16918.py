@@ -1,50 +1,37 @@
 import sys
+input = sys.stdin.readline
 
-R,C,N = map(int,sys.stdin.readline().rstrip().split())
-board = []
+r, c, n = map(int, input().split())
+board = [list(input().strip()) for i in range(r)]
 
-for _ in range(R):
-    board.append(sys.stdin.readline().rstrip())
+if n<=1 :
+    for li in board : print(''.join(li))
+elif n%2==0 :
+    for i in range(r): print('O'*c)
+else :
+    # 첫번째 폭탄이 터진 상태
+    bombs1 = [['O']*c for i in range(r)]
+    for y in range(r):
+        for x in range(c):
+            if board[y][x]=='O': bombs1[y][x] = '.'
+            else :
+                for i, j in [(0, 1), (0, -1), (1, 0), (-1, 0)]:
+                    if y+i>=0 and y+i<r and x+j>=0 and x+j<c and board[y+i][x+j]=='O':
+                        bombs1[y][x] = '.'
+                        break
 
-if N == 0:
-    for y in range(R):
-        str = ""
-        for x in range(C):
-            str += board[y][x]
-        print(str)
-    exit()
+    # 두번째 폭탄이 터진 상태
+    bombs2 = [['O']*c for i in range(r)]
+    for y in range(r):
+        for x in range(c):
+            if bombs1[y][x]=='O' : bombs2[y][x] = '.'
+            else :
+                for i, j in [(0, 1), (0, -1), (1, 0), (-1, 0)]:
+                    if y+i>=0 and y+i<r and x+j>=0 and x+j<c and bombs1[y+i][x+j]=='O':
+                        bombs2[y][x] = '.'
+                        break
 
-N -= 1
-
-bomb = []
-for y in range(R):
-    for x in range(C):
-        if board[y][x] == "O":
-            bomb.append((y,x))
-
-temp = [["O" for _ in range(C)]for __ in range(R)]
-
-dx = [0,1,0,-1,0]
-dy = [0,0,1,0,-1]
-
-for y,x in bomb:
-    for i in range(5):
-        ny = y + dy[i]
-        nx = x + dx[i]
-        if 0 <= ny < R and 0 <= nx < C: 
-            temp[ny][nx] = "."
-if N % 4 == 1 or N % 4 == 3:
-    for _ in range(R):
-        print("0"*C)
-elif N % 4 == 2:
-    for y in range(R):
-        str = ""
-        for x in range(C):
-            str += temp[y][x]
-        print(str)
-elif N % 4 == 0:
-    for y in range(R):
-        str = ""
-        for x in range(C):
-            str += board[y][x]
-        print(str)
+    if n%4==3:
+        for li in bombs1 : print(''.join(li))
+    if n%4==1:
+        for li in bombs2 : print(''.join(li))
