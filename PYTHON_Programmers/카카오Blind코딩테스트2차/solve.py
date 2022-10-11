@@ -2,10 +2,10 @@ import json
 import requests
 
 base_url = "https://huqeyhi95c.execute-api.ap-northeast-2.amazonaws.com/prod"
-x_auth_token = "8ca4c124c7d6a58660283775b6c94bd9"
+x_auth_token = "5cd988931dca345a10e11bfffe09ca8c"
 key = ""
 start_header ={'Content-Type':'application/json; charset=utf-8',
-    'X-Auth-Token' : "8ca4c124c7d6a58660283775b6c94bd9" }
+    'X-Auth-Token' : "5cd988931dca345a10e11bfffe09ca8c" }
 headers = {'Content-Type':'application/json; charset=utf-8',
     'Authorization' : key}
 
@@ -28,12 +28,15 @@ def get_waitingLine():
     # ...
   #]
 
+        
+
+
+
 def get_gameResult():
     response = requests.get(base_url+"/game_result",headers=headers)
 
     if response.status_code == 200:
         game_result = response.json()["game_result"]
-        print(game_result)
 # "game_result": [
 #     {"win": 10, "lose": 2, "taken": 7 },
 #     {"win": 7, "lose": 12, "taken": 33 },
@@ -78,8 +81,7 @@ def get_score():
 if __name__ == "__main__":
     start_api()
     get_waitingLine()
-    for _ in range(595):
-        get_gameResult()
+    get_gameResult()
     put_match()
     put_changeGrade()
     get_score()

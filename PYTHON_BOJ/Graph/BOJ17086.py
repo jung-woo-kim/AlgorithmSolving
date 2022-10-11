@@ -27,7 +27,8 @@ def BFS(sy,sx):
             ny = y+dy[i]
             nx = x+dx[i]
 
-            if 0<=ny<N and 0<=nx<M:
+            if 0<=ny<N and 0<=nx<M and not visited[ny][nx]:
+
                 visited[ny][nx] = True
                 q.append((ny,nx,now+1))
 
