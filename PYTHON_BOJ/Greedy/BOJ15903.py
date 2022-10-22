@@ -16,3 +16,5 @@ for _ in range(m):
     heapq.heappush(hq,a+b)
 
 print(sum(hq))
+tuple(hq)
+print(hq)
