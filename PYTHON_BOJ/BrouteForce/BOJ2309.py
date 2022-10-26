@@ -13,7 +13,7 @@ def dfs(start,st,depth):
         for i in li:
             s += small[i]
             tmp.append(small[i])
-        if s <= 100:
+        if s == 100:
             tmp.sort()
             for t in tmp:
                 print(t)
