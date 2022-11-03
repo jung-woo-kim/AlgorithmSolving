@@ -21,4 +21,4 @@ for i in range(3,max(num_li)):
     dp[i][2] = (dp[i-3][0] + dp[i-3][1]) % 1000000009
 
 for n in num_li:
-    print(sum(dp[n-1]))
+    print(sum(dp[n-1])% 1000000009)
