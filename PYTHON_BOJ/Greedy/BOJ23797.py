@@ -4,8 +4,7 @@ S = sys.stdin.readline().rstrip()
 
 K_frog = 0
 P_frog = 0
-max_k = 0
-max_p = 0
+
 for s in S:
     if s == "K":
         if P_frog > 0:
@@ -23,4 +22,3 @@ for s in S:
 
 print(K_frog+ P_frog)
 
-#print(max(len(K),len(P)))
