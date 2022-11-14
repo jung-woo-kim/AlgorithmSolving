@@ -13,8 +13,5 @@ for i in range(N):
     else:
         dp[li[i]] = 1
     visited[li[i]] = True
-<<<<<<< HEAD
+
 print(N-max(dp))
-=======
-print(N-max(dp))
->>>>>>> 0d3a5276f0ea4504ee3507dae5545facf3776a2f
