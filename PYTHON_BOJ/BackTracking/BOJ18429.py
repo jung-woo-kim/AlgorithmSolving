@@ -18,8 +18,6 @@ def DFS(depth,weight):
             visited[i] = True
             weight -= K
             weight += kit[i]
-            print(depth)
-            print(weight)
             if weight >= 500:
                 DFS(depth+1,weight)
             weight += K
