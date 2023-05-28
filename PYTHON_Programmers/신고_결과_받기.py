@@ -1,26 +1,27 @@
 def solution(id_list, report, k):
     answer = []
+    rep = set()
+
+    for r in report:
+        rep.add(r)
     
-    temp = dict()
-    my = dict()
-    
+    user_report = dict()
+    user_reported = dict()
+
     for id in id_list:
-        temp[id] = 0
-        my[id] = set()
-        
-    for st in set(report):
-        li = st.split()
-        temp[li[1]] += 1
-        my[li[0]].add(li[1])
+        user_reported[id] = 0
+        user_report[id] = []
     
-    for i in id_list:
-        result = 0
-        for u in my[i]:
-            
-            if temp[u]>=k:
-                result +=1
-                
-        answer.append(result)
-            
-    
+    for r in rep:
+        report_user, reported_user = r.split()
+        user_reported[reported_user] += 1
+        user_report[report_user].append(reported_user)
+
+    for id in id_list:
+        sum = 0
+        for reported_user in user_report[id]:
+            if user_reported[reported_user] >= k:
+                sum += 1
+        answer.append(sum)
+
     return answer
