@@ -1,10 +1,9 @@
 answer_li = []
 max = -1
-def DFS(s,li,depth,n,info):
+def DFS(li,i,n,info):
     global max
     global answer_li
-    if depth == n:
-        print(li)
+    if i == 11:
         lion = 0
         apeech = 0
         for i in range(11):
@@ -16,26 +15,39 @@ def DFS(s,li,depth,n,info):
                 apeech += (10-i)
         
         if lion > apeech:
+            tmp = li[:]
+            if n != 0:
+                for i in range(10,0,-1):
+                    if tmp[i] == 0:
+                        tmp[i] = n
+                        break
             if lion-apeech > max:
-                answer_li = [li]
+                answer_li = [tmp]
                 max = lion-apeech
             elif lion-apeech == max:
-                answer_li.append(li)
+                answer_li.append(tmp)
         return
 
-    for i in range(s+1,5):
-        tmp = li[:]
-        tmp[i] += 1
-        DFS(s,tmp,depth+1,n,info)
+    if info[i] < n:
+        li.append(info[i]+1)
+        DFS(li,i+1,n-(info[i]+1),info)
+        li.pop()
+    
+    li.append(0)
+    DFS(li,i+1,n,info)
+    li.pop()
 
 def solution(n, info):
-    answer = []
-    tmp = [0 for i in range(11)]
-    DFS(-1,tmp,0,n,info)
-    print(answer_li)
-    if len(answer_li) == 0:
-        return -1
+    global max
+    global answer_li
     
-    return answer
+    answer_li = []
+    max = -1
+    DFS([],0,n,info)
+    if len(answer_li) == 0:
+        return [-1]
+    answer_li.sort(key=lambda x: x[::-1], reverse=True)
+    
+    return answer_li[0]
 
-solution(3,[2,1,1,1,0,0,0,0,0,0,0])
+solution(5,[2,1,1,1,0,0,0,0,0,0,0])
